@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>南康五中2026届(23)班 · 毕业纪念</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Long+Cang&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#f6f0e2;--ink:#2b2620;--dim:#8a7d68;--red:#bf4028;--card:#fffdf6;--line:#ddd0b2}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:'Noto Serif SC',serif;line-height:1.7}
+.grain{position:fixed;inset:0;z-index:90;pointer-events:none;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+header{padding:72px 20px 26px;text-align:center}
+.badge{display:inline-block;border:2px solid var(--red);color:var(--red);padding:4px 16px;font-size:13px;letter-spacing:4px;border-radius:4px;transform:rotate(-2deg)}
+h1{font-family:'Ma Shan Zheng';font-weight:400;font-size:clamp(40px,7vw,68px);letter-spacing:6px;margin:20px 0 10px}
+.sub{color:var(--dim);font-size:15px;letter-spacing:1px}
+
+.kick{text-align:center;color:var(--red);font-size:12px;letter-spacing:6px;margin-bottom:8px}
+h2{font-family:'Ma Shan Zheng';font-weight:400;text-align:center;font-size:clamp(28px,4.6vw,40px);letter-spacing:4px}
+.sec-sub{text-align:center;color:var(--dim);font-size:13px;letter-spacing:1px;margin-top:6px}
+.divider{display:flex;align-items:center;gap:14px;max-width:920px;margin:60px auto;color:var(--dim);padding:0 20px}
+.divider::before,.divider::after{content:"";flex:1;border-top:1px dashed #cbbd9d}
+
+/* ---- 合照 ---- */
+.frame{position:relative;max-width:860px;margin:30px auto 0;background:var(--card);padding:12px 12px 8px;
+  box-shadow:0 16px 40px rgba(80,60,20,.18);transform:rotate(-1.2deg);transition:transform .4s}
+.frame:hover{transform:rotate(0)}
+.frame img{display:block;width:100%;min-height:220px;object-fit:cover;background:#e9e1cb;color:var(--dim);
+  font-family:'Long Cang';font-size:18px;text-align:center}
+.frame figcaption{text-align:center;font-family:'Long Cang';font-size:19px;color:var(--dim);padding:10px 0 6px}
+
+/* ---- 人名 ---- */
+.teacher-chip{display:table;margin:30px auto 26px;background:var(--red);color:#fff;font-family:'Ma Shan Zheng';
+  font-size:21px;letter-spacing:3px;padding:8px 30px;border-radius:999px;box-shadow:0 6px 14px rgba(191,64,40,.3)}
+.row-group{max-width:880px;margin:0 auto 22px;padding:0 20px}
+.row-label{display:block;text-align:center;font-family:'Long Cang';font-size:17px;color:var(--dim);margin-bottom:9px;letter-spacing:3px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.chip{background:var(--card);border:1px solid var(--line);padding:7px 17px;border-radius:999px;font-size:15px;letter-spacing:1px;transition:.2s;cursor:default}
+.chip:hover{transform:translateY(-3px);border-color:var(--red);color:var(--red);box-shadow:0 6px 14px rgba(80,60,20,.12)}
+
+/* ---- 金句 ---- */
+.quote-box{max-width:760px;margin:30px auto 0;text-align:center;position:relative;padding:38px 28px 30px;
+  background:var(--card);border:1px solid #e4d9c0;box-shadow:0 8px 24px rgba(80,60,20,.08)}
+.quote-box::before{content:"「";position:absolute;top:4px;left:16px;font-family:'Ma Shan Zheng';font-size:46px;color:var(--red);opacity:.3}
+.quote-box::after{content:"」";position:absolute;bottom:-14px;right:16px;font-family:'Ma Shan Zheng';font-size:46px;color:var(--red);opacity:.3}
+#quoteText{font-family:'Ma Shan Zheng';font-weight:400;font-size:clamp(22px,4vw,32px);letter-spacing:2px;min-height:2.4em;transition:opacity .25s}
+.q-ctrl{margin-top:20px;display:flex;gap:18px;justify-content:center;align-items:center}
+#nextQuote{font-family:'Ma Shan Zheng';font-size:17px;background:none;border:1.5px solid var(--red);color:var(--red);
+  border-radius:999px;padding:6px 24px;cursor:pointer;letter-spacing:2px;transition:.2s}
+#nextQuote:hover{background:var(--red);color:#fff}
+#qCount{color:var(--dim);font-size:13px;letter-spacing:2px}
+
+footer{text-align:center;padding:76px 20px 62px;color:var(--dim)}
+footer .f-main{font-family:'Ma Shan Zheng';font-size:clamp(20px,3.4vw,28px);color:var(--ink);letter-spacing:3px;margin-bottom:10px}
+
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.reveal.on{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+
+<header>
+  <span class="badge">南康五中 · 2026 届</span>
+  <h1>青春绚丽绽放 梦想扬帆起航</h1>
+  <p class="sub">赣州市南康区第五中学 2026 届九（23）班 师生合影留念 · 2026年5月25日</p>
+</header>
+
+<!-- 合照 -->
+<section id="photo">
+  <p class="kick">GROUP PHOTO</p>
+  <h2>合 照</h2>
+  <figure class="frame reveal">
+    <!-- ★ 合照放这里 ★
+         把照片文件放到和这个网页同一个文件夹里，命名为 class-photo.jpg
+         （如果文件名/格式不同，只改下面 src 即可，比如 class-photo.png） -->
+    <img src="class-photo.jpg" alt="（23）班师生合照">
+    <figcaption>（23）班师生合照 · 二〇二六年五月二十五日</figcaption>
+  </figure>
+</section>
+
+<div class="divider">✦</div>
+
+<!-- 人名 -->
+<section id="names">
+  <p class="kick">THE 50 OF US</p>
+  <h2>我们 · 五十人</h2>
+  <p class="sec-sub">四十九位同学 + 班主任 · 按名单原顺序（第五排 → 第一排）</p>
+  <div class="teacher-chip reveal" id="teacherChip"></div>
+  <div id="rows"></div>
+</section>
+
+<div class="divider">✦</div>
+
+<!-- 金句 -->
+<section id="quotes">
+  <p class="kick">WORDS TO EACH OTHER</p>
+  <h2>金句 · 想对彼此说</h2>
+  <div class="quote-box reveal">
+    <p id="quoteText"></p>
+    <div class="q-ctrl">
+      <button id="nextQuote">换一句 →</button>
+      <span id="qCount"></span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p class="f-main">愿此去前程似锦，再相逢仍是少年。</p>
+  <p>南康五中 2026 届（23）班 · 后会有期</p>
+</footer>
+
+<script>
+/* ============================================================
+   ★ 改名区 ★ —— 只需改下面三块
+   ============================================================ */
+const TEACHER = '班主任 · 魏小连';
+
+/* 按名单原顺序，分排排列（已更正：刘馥明 胡函祎 罗孝缘 胡璟煊） */
+const ROWS = [
+  { label: '—— 第五排 ——', names: [
+    '钟俊翔','刘宏宇','谢翔','叶康','林世骏','吴和睿','钟智','古宇轩','李峻好','杨雄伟','王奕晨','肖景宸','郭茗豪'
+  ]},
+  { label: '—— 第四排 ——', names: [
+    '谭太康','高奇凡','黄振泰','张福星','刘馥明','范金明','刘宇涵','胡函祎','胡函维','王家宁','吕睿轩','罗孝缘','吴锐','曾海涛','卢荣'
+  ]},
+  { label: '—— 第三排 ——', names: [
+    '廖芷妍','邱燕','董帆','张裕美','邓可','李嘉瑶','王欣','刘小玉','张亦涵','王紫怡','钟骆佳琪'
+  ]},
+  { label: '—— 第一排 ——', names: [
+    '李思琪','张昕钰','胡雯茜','陈梓馨','胡璟煊','刘淑英','龚彦青','赖奕葳','刘馨雨','袁靖琪'
+  ]}
+];
+
+const QUOTES = [
+  '青春绚丽绽放，梦想扬帆起航。',
+  '聚是一团火，散是满天星。',
+  '此去繁花似锦，再相逢仍是少年。',
+  '三年同窗，一生惦念；山水万程，皆要好运。',
+  '把初三留在黑板上，把彼此带往远方。',
+  '前程似锦，未来可期；老同学，常联系。',
+  '愿我们在彼此看不见的岁月里，熠熠生辉。',
+  '愿十年后的我们，仍是今天这群少年。'
+];
+
+const RM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---- 人名 ---- */
+document.getElementById('teacherChip').textContent = TEACHER;
+document.getElementById('rows').innerHTML = ROWS.map(r => `
+  <div class="row-group reveal">
+    <span class="row-label">${r.label}</span>
+    <div class="chips">${r.names.map(n => `<span class="chip">${n}</span>`).join('')}</div>
+  </div>`).join('');
+
+/* ---- 金句轮换 ---- */
+let qi = 0;
+const qText = document.getElementById('quoteText');
+const qCount = document.getElementById('qCount');
+function showQ(i) {
+  qi = i % QUOTES.length;
+  const apply = () => { qText.textContent = QUOTES[qi]; qText.style.opacity = 1; qCount.textContent = (qi + 1) + ' / ' + QUOTES.length; };
+  if (RM) { apply(); return; }
+  qText.style.opacity = 0;
+  setTimeout(apply, 240);
+}
+showQ(0);
+document.getElementById('nextQuote').addEventListener('click', () => showQ(qi + 1));
+if (!RM) setInterval(() => showQ(qi + 1), 8000);
+
+/* ---- 滚动显现 ---- */
+const els = document.querySelectorAll('.reveal');
+if (RM) { els.forEach(el => el.classList.add('on')); }
+else {
+  const io = new IntersectionObserver(es => es.forEach(en => {
+    if (en.isIntersecting) { en.target.classList.add('on'); io.unobserve(en.target); }
+  }), { threshold: .15 });
+  els.forEach(el => io.observe(el));
+}
+</script>
+</body>
+</html>
