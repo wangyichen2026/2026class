@@ -33,6 +33,13 @@ h2{font-family:'Ma Shan Zheng';font-weight:400;text-align:center;font-size:clamp
   font-family:'Long Cang';font-size:18px;text-align:center}
 .frame figcaption{text-align:center;font-family:'Long Cang';font-size:19px;color:var(--dim);padding:10px 0 6px}
 
+.frame img{cursor:zoom-in}
+.lightbox{position:fixed;inset:0;z-index:100;background:rgba(20,15,8,.9);display:flex;flex-direction:column;
+  align-items:center;justify-content:center;padding:30px;cursor:zoom-out}
+.lightbox img{max-width:92vw;max-height:78vh;box-shadow:0 20px 60px rgba(0,0,0,.5);background:#fff}
+.lightbox p{color:#f6f0e2;font-family:'Long Cang';font-size:21px;margin-top:16px;letter-spacing:2px}
+[hidden]{display:none!important}
+  
 /* ---- 人名 ---- */
 .teacher-chip{display:table;margin:30px auto 26px;background:var(--red);color:#fff;font-family:'Ma Shan Zheng';
   font-size:21px;letter-spacing:3px;padding:8px 30px;border-radius:999px;box-shadow:0 6px 14px rgba(191,64,40,.3)}
@@ -53,6 +60,15 @@ h2{font-family:'Ma Shan Zheng';font-weight:400;text-align:center;font-size:clamp
   border-radius:999px;padding:6px 24px;cursor:pointer;letter-spacing:2px;transition:.2s}
 #nextQuote:hover{background:var(--red);color:#fff}
 #qCount{color:var(--dim);font-size:13px;letter-spacing:2px}
+
+/* ---- 副页入口 ---- */
+.enter{display:inline-block;padding:12px 34px;border:2px dashed var(--red);color:var(--red);
+  background:var(--card);font-family:'Ma Shan Zheng';font-size:20px;letter-spacing:3px;text-decoration:none;
+  border-radius:8px;transition:.25s}
+.enter:hover{background:var(--red);color:#fff;transform:translateY(-3px);box-shadow:0 10px 20px rgba(191,64,40,.25)}
+
+.enters{display:flex;justify-content:center;align-items:stretch;gap:18px;flex-wrap:wrap;margin-top:26px}
+.enters .enter{margin-top:0;display:inline-flex;align-items:center;justify-content:center;text-align:center}
 
 footer{text-align:center;padding:76px 20px 62px;color:var(--dim)}
 footer .f-main{font-family:'Ma Shan Zheng';font-size:clamp(20px,3.4vw,28px);color:var(--ink);letter-spacing:3px;margin-bottom:10px}
@@ -116,9 +132,16 @@ footer .f-main{font-family:'Ma Shan Zheng';font-size:clamp(20px,3.4vw,28px);colo
 <footer>
   <p class="f-main">愿此去前程似锦，再相逢仍是少年。</p>
   <p>南康五中 2026 届（23）班 · 后会有期</p>
-  <a href="messages.html">留言墙 →</a>
-  <a class="enter" href="photos.html">照片墙  →</a>
+  <div class="enters">
+    <a class="enter" href="messages.html">留言墙 →</a>
+    <a class="enter" href="photos.html">照片墙 →</a>
+  </div>
 </footer>
+
+<div class="lightbox" id="lb" hidden>
+  <img id="lbImg" alt="">
+  <p id="lbCap"></p>
+</div>
 
 <script>
 /* ============================================================
@@ -187,6 +210,17 @@ else {
   }), { threshold: .15 });
   els.forEach(el => io.observe(el));
 }
+
+  /* ---- 合照点击放大 ---- */
+const lb = document.getElementById('lb');
+const frame = document.querySelector('.frame');
+frame.querySelector('img').addEventListener('click', function () {
+  document.getElementById('lbImg').src = this.src;
+  document.getElementById('lbCap').textContent = frame.querySelector('figcaption').textContent;
+  lb.hidden = false;
+});
+lb.addEventListener('click', () => lb.hidden = true);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') lb.hidden = true; });
 </script>
 </body>
 </html>
